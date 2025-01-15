@@ -1,15 +1,15 @@
-name: Tests
-
-on:
-  push:
-    branches:
-      - dev
-      - master
-
 jobs:
-  hello-world:
+  unit-test:
     runs-on: ubuntu-20.04
-
+    container:
+      image: epitechcontent/epitest-docker
+    
     steps:
-      - name: Say hello world
-        run: echo Welcome to the Github Actions workshop !
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Run unit-tests
+        run: make tests_run
+      
+      - name: Run coverage
+        run: make coverage
